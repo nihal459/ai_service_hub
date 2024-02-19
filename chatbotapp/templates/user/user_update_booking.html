@@ -1,0 +1,40 @@
+{% extends 'service_center/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+
+<div class="container-fluid">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title fw-semibold mb-4">Update Booking</h5>
+        <form method="POST">
+            {% csrf_token %}
+
+            <p>Current Date:{{booking.confirm_date}} </p>
+            <div class="mb-3">
+              <label for="date" class="form-label">Change Date</label>
+              <input type="date" class="form-control" id="date" name="date" >
+            </div>
+
+            <br>
+            <div class="mb-3">
+                <label for="booking-status" class="form-label">Booking Status</label>
+                <select class="form-select" id="booking-status" name="booking-status">
+                  <option value="pending">Pending</option>
+                  <option value="approved">Approved</option>
+                  <option value="cancelled">Cancelled</option>
+                </select>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+      </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

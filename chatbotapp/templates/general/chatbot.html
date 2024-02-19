@@ -1,0 +1,87 @@
+{% extends 'general/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<style>
+    .chat-box {
+      max-width: 550px;
+      margin: auto;
+      padding: 20px;
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      margin-top: 40px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    }
+    .chat-header {
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    .chat-body {
+      padding: 10px;
+      height:350px;
+    }
+    .chat-response {
+      background-color: #DCF8C6;
+      border-radius: 10px;
+      padding: 10px;
+      max-width: 80%;
+      margin-bottom: 10px;
+    }
+    .chat-input {
+      width: calc(100% - 90px);
+      border-radius: 20px;
+      padding: 10px;
+      border: 1px solid #ced4da;
+      margin-bottom: 10px;
+    }
+    .chat-send-button {
+      width: 80px;
+      border-radius: 20px;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+    }
+  </style>
+    <!-- Hero Start -->
+    <div class="container-fluid pt-5 bg-primary hero-header mb-5">
+        <div class="container pt-4">
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="chat-box">
+          <div class="chat-header">AI SERVICE CHATBOT</div>
+          <div class="chat-body">
+              {% if response_text %}
+                  <div class="chat-response">{{ response_text }}</div>
+              {% endif %}
+          </div>
+          <div class="chat-footer">
+              <form method="post">
+                  {% csrf_token %}
+                  <input type="text" name="prompt" id="prompt" class="chat-input" placeholder="Type your message here...">
+                  <button type="submit" class="chat-send-button">Send</button>
+              </form>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <br>
+      <br>
+
+
+
+
+
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock %}

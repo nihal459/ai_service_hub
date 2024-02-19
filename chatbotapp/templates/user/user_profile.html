@@ -1,0 +1,47 @@
+{% extends 'service_center/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+
+<div class="container-fluid">
+  <div class="card">
+      <div class="card-body">
+          <h5 class="card-title fw-semibold mb-4">Update Profile</h5>
+          <form method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <a href="{{ request.user.imageURL }}" target="_blank" style="color:black;">
+                Current Profile Picture
+                <img src="{{ request.user.imageURL }}" alt="Profile Picture" height="100px">
+              </a>
+              <br>
+              <div class="mb-3">
+                  <label for="image" class="form-label">Change Profile Picture</label>
+                  <input type="file" class="form-control" id="image" name="profile_picture" accept="image/*">
+              </div>
+              <div class="mb-3">
+                  <label for="serviceCenterName" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="serviceCenterName" name="name" placeholder="Enter service center name" value="{{ user.name }}">
+              </div>  
+              <div class="mb-3">
+                  <label for="phoneNumber" class="form-label">Phone Number</label>
+                  <input type="tel" class="form-control" id="phoneNumber" name="mobile_number" placeholder="Enter phone number" value="{{ user.mobile_number }}">
+              </div>
+              <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="{{ user.email }}">
+              </div>
+ 
+              <br>
+              <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+      </div>
+  </div>
+</div>
+
+
+
+
+{% endblock %}

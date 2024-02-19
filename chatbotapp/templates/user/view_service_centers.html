@@ -1,0 +1,102 @@
+{% extends 'service_center/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+
+{% comment %} <div class="container-fluid">
+    <div class="card-columns">
+        {% for center in service %}
+        <div class="card">
+            <img src="{{ center.profile_picture.url }}" class="card-img-top" alt="Service Center Image">
+            <div class="card-body">
+                <h5 class="card-title">{{ center.name }}</h5>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ center.id }}">
+                    View Details
+                </button>
+            </div>
+        </div>
+
+        <!-- Bootstrap Modal for each service center -->
+        <div class="modal fade" id="exampleModal{{ center.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{ center.name }} Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Include any additional details here -->
+                        <p>Location: {{ center.location }}</p>
+                        <p>District: {{ center.district }}</p>
+                        <p>State: {{ center.state }}</p>
+                        <p>Description: {{ center.description }}</p>
+                        <p>Phone Number: {{ center.mobile_number }}</p>
+                        <p>Email: {{ center.email }}</p>
+                        <p>Website: {{ center.website }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div> {% endcomment %}
+
+<div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for center in service %}
+        <div class="col">
+            <div class="card h-100">
+                <img src="{{ center.profile_picture.url }}" class="card-img-top" alt="Service Center Image" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ center.name }}</h5>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ center.id }}">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bootstrap Modal for each service center -->
+        <div class="modal fade" id="exampleModal{{ center.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{ center.name }} Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <!-- Include any additional details here -->
+                        <div style="text-align:center;"><img src="{{center.imageURL}}" height="150px"></div>
+                        
+                        <br>
+                        <hr>
+                        <br>
+
+                        <p>Location: <a href="{{ center.location }}">{{ center.location }}</a></p>
+                        <p>District: {{ center.district }}</p>
+                        <p>State: {{ center.state }}</p>
+                        <p>Description: {{ center.description }}</p>
+                        <p>Phone Number: <a href="tel:{{ center.mobile_number }}">{{ center.mobile_number }}</a></p>
+                        <p>Email: <a href="mailto:{{ center.email }}">{{ center.email }}</a></p>
+                        <p>Website: <a href="{{ center.website }}">{{ center.website }}</a></p>
+                        <br>
+                        <hr>
+                        <br>
+                        <div style="text-align:center;"><a href="{% url 'book' center.pk %}" class="btn btn-primary">Book</a></div>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
+

@@ -1,0 +1,45 @@
+{% extends 'service_center/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<div class="container mt-5">
+    <h2>Booking Information</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Service Center</th>
+          <th>Requested Date</th>
+          <th>Received Date</th>
+          <th>Given Message</th>
+          <th>Service Center Booking Status</th>
+          <th>User Booking Status</th>
+          <th>Update</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for booking in bookings %}
+        <tr>
+          <td>{{ booking.service_center.name }}</td>
+          <td>{{ booking.user_date }}</td>
+          <td>{{ booking.confirm_date }}</td>
+          <td>{{ booking.message }}</td>
+          <td>{{ booking.service_center_booking_status }}</td>
+          <td>{{ booking.user_booking_status }}</td>
+
+          <td><a href="{% url 'user_update_booking' booking.pk %}" class="btn btn-primary">Update</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  
+
+
+
+{% endblock %}

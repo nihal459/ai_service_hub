@@ -1,0 +1,76 @@
+{% extends 'service_center/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<br>
+<br>
+<br>
+<br>
+<h2 style="margin:10px;">Bookings</h2>
+<br>
+<div class="container">
+  <table class="table">
+      <thead>
+          <tr>
+              <th>User</th>
+              <th>Requested Date</th>
+              <th>Given Date</th>
+              <th>Received Message</th>
+              <th>My Booking Status</th>
+              <th>User Booking Status</th>
+              <th>Update</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for booking in bookings %}
+          <tr>
+              <td><a href="#" data-toggle="modal" data-target="#userDetailsModal{{ booking.user.pk }}">{{ booking.user.name }}</a></td>
+              <td>{{ booking.user_date }}</td>
+              <td>{{ booking.confirm_date }}</td>
+              <td>{{ booking.message }}</td>
+              <td>{{ booking.service_center_booking_status }}</td>
+              <td>{{ booking.user_booking_status }}</td>
+              <td><a href="{% url 'update_booking' booking.pk %}" class="btn btn-primary">Update</a></td>
+          </tr>
+
+          <!-- Modal for user details -->
+          <div class="modal fade" id="userDetailsModal{{ booking.user.pk }}" tabindex="-1" role="dialog" aria-labelledby="userDetailsModalLabel{{ booking.user.pk }}" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="userDetailsModalLabel{{ booking.user.pk }}">User Details: {{ booking.user.name }}</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                          <div style="text-align:center;"><img src="{{booking.user.imageURL}}" height="100px;"></div>
+                          <p><strong>Name:</strong> {{ booking.user.name }}</p>
+                          <p><strong>Mobile Number:</strong> {{ booking.user.mobile_number }}</p>
+                          <p><strong>Email:</strong> {{ booking.user.email }}</p>
+                          <!-- Add more user details as needed -->
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+      </tbody>
+  </table>
+</div>
+
+<!-- Bootstrap JS (Optional, if you want to use modal dismiss functionality) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
+{% endblock %}
