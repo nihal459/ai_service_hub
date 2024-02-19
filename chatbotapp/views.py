@@ -10,7 +10,7 @@ import datetime
 def index(request):
     return render (request, 'general/index.html')
 
-openai.api_key = "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"
+openai.api_key = ""
 
 def chatbot(request):
     response_text = ""
